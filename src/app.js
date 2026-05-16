@@ -25,4 +25,17 @@ app.use(cookieParser())
 //     res.send("Backend is working");
 // });
 
+
+
+
+//routes import
+
+import userRouter from './routes/user.routes.js'
+
+//routes declaration
+app.use("/api/v1/users",userRouter)
+
+//http://localhost:8000/api/v1/users/register
+//http://localhost:8000/api/v1/users/login (for login)
+
 export { app }
