@@ -520,7 +520,7 @@ const getWatchHistory = asyncHandler(async(req,res)=>{
             }
         },
 
-        //at this condition we reach at user ie we get the user now lookup at his watchhistory
+        //at this condition we reach at user i.e. we get the user now lookup at his watchhistory
 
         {
             $lookup:{
