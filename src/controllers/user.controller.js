@@ -274,7 +274,11 @@ const refreshAccessToken = asyncHandler(async(req,res)=>{
             secure: true
         }
     
-        const {accessToken,newRefreshToken}=await generateAccessAndRefreshTokens(user._id)
+        const {accessToken,refreshToken:newRefreshToken}=await generateAccessAndRefreshTokens(user._id)
+
+        //in above line here only written like const {accessToken,newRefreshToken}=await generateAccessAndRefreshTokens(user._id)
+        //due to this when i tested refresh token on postman in response i got only access token but after this i got refresh token also in response
+
     
         return res
         .status(200)
@@ -480,7 +484,7 @@ const getUserChannelProfile = asyncHandler(async(req,res)=>{
                     $size:"$subscribedTo"
                 },
                 isSubscribed:{
-                    $condition:{
+                    $cond:{  //condition changed to cond
                         if:{$in:[req.user?._id,"$subscribers.subscriber"]},
                         then:true,
                         else:false
